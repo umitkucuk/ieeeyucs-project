@@ -52,6 +52,18 @@ const Main = async function(){
             res.json(obj);
         })
     });
+    app.get("/List/delete/:productname", async (req,res)=>{
+        listveriler.findOneAndRemove({name : req.params.productname},function(err,obj){
+            if(obj) res.status(200).send("Üürn alısveris Listesinden Silindi.");
+            else res.send("Ürün silinirken hata olustu");
+        })
+    });
+    app.get("/List/deleteall", async (req,res)=>{
+        listveriler.remove({},function(err,obj){
+            if(obj) res.status(200).send("Alısveris Listesi Temizlendi");
+            else res.send("Liste temizlenirken hata olustu");
+        })
+    });
     app.get("/List/buy/:productname/:status", async (req,res)=>{
        listveriler.findOneAndUpdate({name : req.params.productname},{$set:{buy : req.params.status}},function(err,obj){
            if(obj){

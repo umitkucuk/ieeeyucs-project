@@ -22,6 +22,11 @@ var listveriler = mongoose.model('listveriler',listschema);
 
 
 const Main = async function(){
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+      });
     app.get("/Save/:barcode/:productname", async (req,res)=>{
         var product = new pveriler({
             name : req.params.productname,

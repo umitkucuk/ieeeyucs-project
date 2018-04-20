@@ -22,6 +22,11 @@ var listveriler = mongoose.model('listveriler',listschema);
 
 
 const Main = async function(){
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+      });
     app.get("/Save/:barcode/:productname", async (req,res)=>{
         var product = new pveriler({
             name : req.params.productname,
@@ -50,6 +55,18 @@ const Main = async function(){
    app.get("/GetList/", async (req,res)=>{
         listveriler.find(function(err,obj){
             res.json(obj);
+        })
+    });
+    app.get("/List/delete/:productname", async (req,res)=>{
+        listveriler.findOneAndRemove({name : req.params.productname},function(err,obj){
+            if(obj) res.status(200).send("Üürn alısveris Listesinden Silindi.");
+            else res.send("Ürün silinirken hata olustu");
+        })
+    });
+    app.get("/List/deleteall", async (req,res)=>{
+        listveriler.remove({},function(err,obj){
+            if(obj) res.status(200).send("Alısveris Listesi Temizlendi");
+            else res.send("Liste temizlenirken hata olustu");
         })
     });
     app.get("/List/buy/:productname/:status", async (req,res)=>{

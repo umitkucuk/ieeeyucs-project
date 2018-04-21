@@ -12,7 +12,10 @@ injectGlobal`
   }
 
   body {
+    background-color: rgb(246, 250, 251);
+    font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
+    font-weight: 400;
   }
 `
 

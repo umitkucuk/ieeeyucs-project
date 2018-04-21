@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import styled from 'styled-components'
 
 import * as config from '../../constants/config'
 import Item from './Item'
+
+const Ul = styled.ul`
+  list-style: none;
+  padding: 0;
+
+  & > li {
+    margin-bottom: 2rem;
+  }
+`
 
 class ShoppingList extends Component {
   constructor () {
@@ -25,12 +35,12 @@ class ShoppingList extends Component {
     return (
       <React.Fragment>
         {loading && <span>Loading...</span>}
-        <ul>
+        <Ul>
         {shoppingList.map(
           (product, index) =>
             <li><Item key={index} item={product} /></li>
         )}
-        </ul>
+        </Ul>
       </React.Fragment>
     )
   }

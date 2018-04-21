@@ -9,7 +9,7 @@ import Navigation from './Navigation'
 import HomePage from './Home'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <Router>
         <React.Fragment>

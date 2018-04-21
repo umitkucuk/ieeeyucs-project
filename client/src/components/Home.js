@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <Grid>
         <ShoppingList />
-      </Grid> 
+      </Grid>
     )
   }
 }

@@ -75,49 +75,48 @@ class Item extends Component {
     e.preventDefault()
 
     if (this.state.buy === false) {
-    this.setState({
-      buy: true
-    })
+      this.setState({
+        buy: true
+      })
 
-    axios.get(config.SERVER_URL + "List/buy/" + this.state.name + "/true")
-      .then((response) => {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      axios.get(config.SERVER_URL + 'List/buy/' + this.state.name + '/true')
+        .then((response) => {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     } else {
       this.setState({
         buy: false
       })
 
-      axios.get(config.SERVER_URL + "List/buy/" + this.state.name + "/false")
-      .then((response) => {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      axios.get(config.SERVER_URL + 'List/buy/' + this.state.name + '/false')
+        .then((response) => {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
 
   render () {
     const { name, count, buy } = this.state
 
-    return(
+    return (
       <React.Fragment>
-        {buy ?
-          (<StyledItem onClick={this.handleClick} receipt>
+        {buy
+          ? (<StyledItem onClick={this.handleClick} receipt>
             <h4>{name}</h4>
             <span>{count}</span>
           </StyledItem>)
-          :
-          (<StyledItem onClick={this.handleClick}>
+          : (<StyledItem onClick={this.handleClick}>
             <h4>{name}</h4>
             <span>{count}</span>
           </StyledItem>)
         }
-      </React.Fragment>  
+      </React.Fragment>
     )
   }
 }

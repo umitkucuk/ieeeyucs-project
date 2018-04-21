@@ -20,7 +20,6 @@ var listschema = new mongoose.Schema({
 var pveriler = mongoose.model('pveriler',productschema);
 var listveriler = mongoose.model('listveriler',listschema);
 
-
 const Main = async function(){
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
@@ -83,20 +82,20 @@ const Main = async function(){
             name : req.params.productname,
             count : req.params.count,
             buy : false
-        }); 
-         listveriler.findOne({name : req.params.productname},function(err,resp){
-            if(resp) {
-                listveriler.findOneAndUpdate({name : req.params.productname},{$set:{count : req.params.count}},function(erro, obj){
+        });
+        listveriler.findOne({name : req.params.productname},function(err,resp){
+            if (resp) {
+                listveriler.findOneAndUpdate({name : req.params.productname},{$set:{count : req.params.count}},function(erro, obj) {
                     res.status(200).send("Ürün Sayısı değistirildi"); //console.log(erro + " --- " + obj + "****" + err + "/////" + resp);
                 })
-            }else{
-                lproduct.save(function(error,doc){
-                    if(error) res.send("bir hata meydana geldi : \n\r " + error);
+            } else {
+                lproduct.save(function(error,doc) {
+                    if (error) res.send("bir hata meydana geldi : \n\r " + error);
                     else res.status(200).send("OK");
-            })
-        }
-    });
-})
+                })
+            }
+        });
+    })
     app.listen(8000,console.log("sunucu çalısıyor"));
 }
 Main();

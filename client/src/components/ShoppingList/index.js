@@ -36,9 +36,8 @@ class ShoppingList extends Component {
       <React.Fragment>
         {loading && <span>Loading...</span>}
         <Ul>
-          {shoppingList.map(
-            (product, index) =>
-              <li><Item key={index} item={product} /></li>
+          {shoppingList.map((product, index) =>
+            <li key={index}><Item item={product} /></li>
           )}
         </Ul>
       </React.Fragment>
